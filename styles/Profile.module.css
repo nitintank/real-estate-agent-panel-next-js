@@ -1,0 +1,166 @@
+/* Dashboard CSS */
+
+.dashboard_main_box {
+    width: calc(100% - 260px);
+    margin-left: 260px;
+    height: calc(100vh - 65px);
+    margin-top: 65px;
+    background-color: #edf2f6;
+    padding: 20px;
+  }
+  
+  .dashboard_main_box h2 {
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  .mainContentBox {
+    width: 100%;
+    height: auto;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.mainContentBox h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.passwordBtn{
+    padding: 4px 10px;
+    font-size: 15px;
+    background-color: #1085FF;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.userProfileBox{
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+}
+
+.userProfileBox form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.profile_img_box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_img_box img{
+    width: 170px;
+    height: 170px;
+    border-radius: 15px;
+}
+
+.formInnerBox1{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.userProfileBox input{
+    width: 49%;
+    border: 1px solid #ebebeb;
+    padding: 10px 15px;
+    color: black;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.userProfileBox input::placeholder{
+    color: black;
+}
+
+.formInnerBox1 textarea{
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding: 10px 15px;
+    color: black;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.userProfileBox button{
+    width: 125px;
+    padding: 6px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #1085FF;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.userProfileBox button i{
+    font-size: 20px;
+}
+
+.error{
+    width: 100%;
+    color: red;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.success{
+    width: 100%;
+    color: green;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+/* Responsive Code */
+  
+@media (max-width: 769px) {
+    .dashboard_main_box {
+      width: 100%;
+      margin-left: 0px;
+      height: calc(100vh - 65px);
+      margin-top: 65px;
+      padding: 10px;
+    }
+  
+    .dashboard_main_box h2 {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .mainContentBox{
+        padding: 10px 0px;
+    }
+
+    .profile_img_box img{
+        width: 145px;
+        height: 145px;
+    }
+
+    .userProfileBox input{
+        width: 100%;
+    }
+  }

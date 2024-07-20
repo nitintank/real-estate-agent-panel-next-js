@@ -1,0 +1,403 @@
+/* Dashboard CSS */
+
+.dashboard_main_box {
+    width: calc(100% - 260px);
+    margin-left: 260px;
+    height: calc(100vh - 65px);
+    margin-top: 65px;
+    background-color: #edf2f6;
+    padding: 20px;
+}
+
+.dashboard_main_box h2 {
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.formMainBox{
+    width: 100%;
+    margin: 10px auto;
+    margin-bottom: 20px;
+}
+
+.formMainBox label{
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.formMainBox input[type=file]{
+    width: 100%;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 25px;
+}
+
+.checkBoxBigBox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.checkBoxDiv{
+    width: 31%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+} 
+
+.amenitiesText{
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    margin: auto;
+}
+
+.amenitiesNamesText{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.dBlock{
+    display: block;
+}
+
+.dBlock input[type=text]{
+    width: 80% !important;
+    border-radius: 10px !important;
+}
+
+.dBlock select{
+    width: 80%;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+/* Responsive Code */
+
+@media (max-width: 1395px) {
+
+    /* Main Content Big Box */
+    .mainSidebarBox {
+        width: 17%;
+    }
+
+    .mainContentBox {
+        width: 83%;
+    }
+}
+
+@media (max-width: 1285px) {
+
+    /* Main Content Big Box */
+    .mainSidebarBox {
+        width: 19%;
+        top: 60px;
+    }
+
+    .mainContentBox {
+        width: 81%;
+    }
+}
+
+@media (max-width: 1100px){
+    /* Main Content Big Box */
+    .mainSidebarBox {
+        width: 25%;
+    }
+
+    .mainContentBox {
+        width: 75%;
+    }
+}
+
+@media (max-width: 769px) {
+
+    /* Main Content Big Box */
+
+    .mainSidebarBox {
+        display: none;
+    }
+
+    .mainContentBox {
+        width: 100%;
+        padding: 5px 10px;
+    }
+
+    .mainContentBox h2{
+        font-size: 30px;
+        text-align: center;
+    }
+    .checkBoxBigBox{
+        gap: 10px;
+    }
+    .checkBoxDiv{
+        width: 48%;
+    }
+    .checkBoxDiv label{
+        font-size: 14px;
+    }
+    .dBlock input[type=text]{
+        width: 100% !important;
+    }
+
+}
+
+.propertyTypeBox{
+    width: 40%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+    flex-wrap: wrap;
+}
+
+.propertyTypeBox h3{
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+.propertyTypeBox input[type = radio]{
+    display: none;
+}
+
+.propertyTypeBox label{
+    width: 48%;
+    cursor: pointer;
+    border: 1px solid rgb(236, 236, 236);
+    border-radius: 10px;
+    padding: 10px 5px;
+    text-align: center;
+    background-color: #F9F9F9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px !important;
+    font-weight: 600;
+}
+
+.propertyTypeBox2{
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.propertyTypeBox2 h3{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.propertyTypeBox2 input[type = radio]{
+    display: none;
+}
+
+.propertyTypeBox2 label{
+    width: 100%;
+    cursor: pointer;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+    text-align: center;
+}
+
+/* Property Form Box */
+
+.propertyFormBox{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+    margin-bottom: 10px;
+}
+
+.propertyFormBox input{
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding: 10px 15px;
+    color: black;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.propertyFormBox textarea{
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding: 10px 15px;
+    color: black;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.propertyFormBox select{
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding: 10px 15px;
+    color: black;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.propertyFormBox2{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+    margin-bottom: 10px;
+}
+
+.propertyFormBox2 h3{
+    width: 100%;
+}
+
+.propertyFormBox2 input{
+    width: 49%;
+    border: 1px solid #ebebeb;
+    padding: 10px 15px;
+    color: black;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.propertyFormBox2 input[type=checkbox]{
+    width: auto;
+    display: flex;
+}
+
+.propertyFormBox2 select{
+    width: 49%;
+    border: 1px solid #ebebeb;
+    padding: 10px 15px;
+    color: black;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.propertyFormBox3{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+    margin-bottom: 10px;
+}
+
+.propertyFormBox3 input{
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding: 10px 15px;
+    color: black;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.submitBtn{
+    width: 250px;
+    padding: 6px 0px;
+    text-align: center;
+    margin: 10px auto;
+    font-size: 22px;
+    font-weight: 500;
+    background-color: #1085FF;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Responsive Code */
+
+@media (max-width: 1255px){
+    .propertyFormBox2{
+        gap: 10px;
+    }
+    .mainContentBox form{
+        width: 90%;
+    }
+}
+
+@media (max-width: 1255px){
+    .propertyFormBox2{
+        gap: 5px;
+    }
+}
+
+@media (max-width: 769px) {
+    .mainContentBox form{
+        width: 100%;
+    }
+    .propertyTypeBox{
+        width: 100%;
+    }
+    .propertyTypeBox2{
+        width: 100%;
+    }
+    .propertyFormBox2 input{
+        width: 100%;
+    }
+    .checkBoxDiv{
+        width: 100%;
+    }
+    .amenitiesText{
+        font-size: 21px;
+    }
+    .submitBtn{
+        width: 220px;
+        font-size: 18px;
+    }
+}
+
+/* Responsive Code */
+
+@media (max-width: 769px) {
+    .dashboard_main_box {
+        width: 100%;
+        margin-left: 0px;
+        height: calc(100vh - 65px);
+        margin-top: 65px;
+        padding: 10px;
+    }
+
+    .dashboard_main_box h2 {
+        font-size: 25px;
+        text-align: center;
+    }
+}
+
+.previewImage{
+    width: 250px;
+    height: auto;
+}
