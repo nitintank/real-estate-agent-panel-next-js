@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from "@/styles/Login.module.css";
 
-const login = () => {
+const Login = () => {
     const [identifier, setIdentifier] = useState('')
     const [password, setPassword] = useState('')
     const [invalidLogin, setInvalidLogin] = useState(false)
@@ -64,4 +64,4 @@ const login = () => {
     )
 }
 
-export default login
+export default Login

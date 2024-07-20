@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/Profile.module.css";
+import Image from 'next/image';
 
-const profile = () => {
+const Profile = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -138,7 +139,7 @@ const profile = () => {
                                 <div className={styles.profile_img_box}>
                                     {imagePath && (
                                         <div>
-                                            <img src={`https://a.khelogame.xyz/${imagePath}`} alt="Profile" width="100" />
+                                            <Image width={200} height={200} src={`https://a.khelogame.xyz/${imagePath}`} alt="Profile" />
                                         </div>
                                     )}
                                     <input type="file" name="profile_picture" onChange={handleFileChange} />
@@ -180,4 +181,4 @@ const profile = () => {
     )
 }
 
-export default profile
+export default Profile

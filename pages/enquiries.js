@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/PropertyList.module.css";
 
-const enquiries = () => {
+const Enquiries = () => {
     const [inquiries, setInquiries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -76,4 +76,4 @@ const enquiries = () => {
     )
 }
 
-export default enquiries
+export default Enquiries

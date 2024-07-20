@@ -4,7 +4,7 @@ import styles from "@/styles/AddProperty.module.css";
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-const editProperty = () => {
+const EditProperty = () => {
 
     const router = useRouter();
     const { id } = router.query;
@@ -339,7 +339,7 @@ const editProperty = () => {
                         <div className={styles.propertyFormBox}>
                             <label>Add Property Images</label>
                             {imagePath && (
-                                <img src={`https://a.khelogame.xyz/${imagePath}`} alt="Property Preview" className={styles.previewImage} />
+                                <Image width={200} height={200} src={`https://a.khelogame.xyz/${imagePath}`} alt="Property Preview" className={styles.previewImage} />
                             )}
                             <input
                                 type="file"
@@ -349,7 +349,7 @@ const editProperty = () => {
                             <label>Floor Map Images</label>
                             {mediaPaths.length > 0 && (
                                 <div>
-                                    <img
+                                    <Image width={200} height={200}
                                         src={`https://a.khelogame.xyz/${mediaPaths[0]}`}
                                         alt="Media Preview"
                                         className={styles.previewImage}
@@ -396,7 +396,7 @@ const editProperty = () => {
                                 onChange={(e) => setTitleDeed(e.target.value)}
                                 placeholder="Enter Title Deed"
                             />
-                            <label htmlFor="">Owner's Passport Or ID</label>
+                            <label htmlFor="">{`Owner's Passport Or ID`}</label>
                             <input
                                 type="file"
                                 onChange={(e) => setPropertyDocumentPaths(Array.from(e.target.files))}
@@ -442,4 +442,4 @@ const editProperty = () => {
     )
 }
 
-export default editProperty
+export default EditProperty

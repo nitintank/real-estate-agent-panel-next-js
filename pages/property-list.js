@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-const propertyList = () => {
+const PropertyList = () => {
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -118,4 +118,4 @@ const propertyList = () => {
     )
 }
 
-export default propertyList
+export default PropertyList
