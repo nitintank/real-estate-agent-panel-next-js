@@ -91,6 +91,23 @@ const Navbar = () => {
                                 <span className={styles.navlink}>Profile</span>
                             </Link>
                         </li>
+                        <li className={styles.item}>
+                            <Link href="/transaction-approval" className={styles.nav_link}>
+                                <span className={styles.navlink_icon}>
+                                    <i class='bx bxs-user-circle'></i>
+                                </span>
+                                <span className={styles.navlink}> Transaction-approval</span>
+                            </Link>
+                        </li>
+                        
+                        <li className={styles.item}>
+                            <Link href="/all-traansaction-approval" className={styles.nav_link}>
+                                <span className={styles.navlink_icon}>
+                                    <i class='bx bxs-user-circle'></i>
+                                </span>
+                                <span className={styles.navlink}> All transaction-approval</span>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </nav>
