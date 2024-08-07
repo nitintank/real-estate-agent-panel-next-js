@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styles from "@/styles/PropertyList.module.css";
 import Navbar from "@/components/Navbar";
 import { useEffect, useState } from 'react';
@@ -9,24 +9,29 @@ const PropertyList = () => {
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [amenities, setAmenities] = useState([]);
     const router = useRouter();
 
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const userId = localStorage.getItem('userId');
-                if (!userId) {
+                const agentId = localStorage.getItem('agentId');
+                if (!agentId) {
                     throw new Error('User ID not found');
                 }
-                const response = await fetch(`https://a.khelogame.xyz/get-properties-user/${userId}`);
+                const response = await fetch(`https://a.khelogame.xyz/get-agent-properties?agent_id=${agentId}`);
                 if (!response.ok) {
                     console.error('Network response status:', response.status, response.statusText);
                     throw new Error(`Network response was not ok: ${response.statusText}`);
                 }
 
                 const data = await response.json();
-                setProperties(data);
+                console.log('Fetched properties data:', data); // Add this log
+                if (Array.isArray(data)) {
+                    setProperties(data);
+                } else {
+                    console.error('Data is not an array:', data);
+                    setProperties([]); // Set an empty array if the data is not an array
+                }
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -115,7 +120,8 @@ const PropertyList = () => {
                 </div>
             </section>
         </>
-    )
-}
+    );
+};
 
-export default PropertyList
+export default PropertyList;
+

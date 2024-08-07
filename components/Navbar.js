@@ -108,6 +108,15 @@ const Navbar = () => {
                                 <span className={styles.navlink}> All transaction-approval</span>
                             </Link>
                         </li>
+                        
+                        <li className={styles.item}>
+                            <Link href="/wallet-coins" className={styles.nav_link}>
+                                <span className={styles.navlink_icon}>
+                                    <i class='bx bxs-user-circle'></i>
+                                </span>
+                                <span className={styles.navlink}>Wallet Coins</span>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </nav>
