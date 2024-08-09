@@ -25,6 +25,7 @@
 .formMainBox label{
     font-size: 14px;
     text-transform: capitalize;
+    font-weight: 600;
 }
 
 .formMainBox input[type=file]{
@@ -232,7 +233,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     background-color: white;
     padding: 10px 15px;
     border-radius: 10px;
@@ -340,7 +341,7 @@
     padding: 6px 0px;
     text-align: center;
     margin: 10px auto;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     background-color: #1085FF;
     border-radius: 5px;
@@ -354,7 +355,7 @@
 }
 
 .submitBtn i{
-    font-size: 20px;
+    font-size: 18px;
 }
 
 /* Responsive Code */

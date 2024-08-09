@@ -3,7 +3,7 @@ import styles from "@/styles/WalletCoins.module.css";
 import Navbar from "@/components/Navbar";
 import Image from 'next/image';
 
-const AgentWalletCoin = () => {
+const RedeemCoins = () => {
     const [wallets, setWallets] = useState([]);
     const [properties, setProperties] = useState([]);
     const [selectedProperty, setSelectedProperty] = useState('');
@@ -117,38 +117,23 @@ const AgentWalletCoin = () => {
                     <p>Total Coins</p>
                 </div>
 
-                <div className={styles.table_big_box}>
-                    <table className={styles.customers}>
-                        <thead>
-                            <tr>
-                                <th>S No.</th>
-                                <th>Property Name</th>
-                                <th>Coins</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {wallets.length > 0 ? wallets.map((wallet, index) => (
-                                <tr key={wallet.id}>
-                                    <td>{index + 1}</td>
-                                    <td>{wallet.property_name}</td>
-                                    <td>{wallet.coins}</td>
-                                    <td>{new Date(wallet.created_at).toLocaleString()}</td>
-                                    <td>{new Date(wallet.updated_at).toLocaleString()}</td>
-                                </tr>
-                            )) : (
-                                <tr>
-                                    <td colSpan="6">No data available</td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
+                <h3>Redeem Coins</h3>
+                <form onSubmit={handleRequestSubmit} className={styles.propertyTypeBox}>
+                    <label>Select Property</label>
+                    <select value={selectedProperty} onChange={(e) => setSelectedProperty(e.target.value)} required>
+                        <option value="">Select a Property</option>
+                        {properties.map(property => (
+                            <option key={property.id} value={property.property_name}>{property.property_name}</option>
+                        ))}
+                    </select>
+                    <label> Enter Coins</label>
+                    <input type="number" value={requestedCoins} onChange={(e) => setRequestedCoins(e.target.value)} required />
+                    <button type="submit" className={styles.submitBtn}>Submit Request</button>
+                </form>
 
             </section>
         </>
     );
 };
 
-export default AgentWalletCoin;
+export default RedeemCoins;

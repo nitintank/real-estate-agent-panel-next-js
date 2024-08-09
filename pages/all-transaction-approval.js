@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from "@/styles/PropertyList.module.css";
 import Navbar from "@/components/Navbar";
+import Link from 'next/link';
 
 const AgentTransactions = () => {
     const [transactions, setTransactions] = useState([]);
@@ -15,6 +16,7 @@ const AgentTransactions = () => {
                         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
                     }
                 });
+
                 if (!response.ok) {
                     console.error('Network response status:', response.status, response.statusText);
                     throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -28,6 +30,7 @@ const AgentTransactions = () => {
                 setLoading(false);
             }
         };
+
         fetchTransactions();
     }, []);
 
@@ -38,14 +41,14 @@ const AgentTransactions = () => {
         <>
             <Navbar />
             <section className={styles.dashboard_main_box}>
-                <h2>Agent Transactions</h2>
+                <h2>Transactions List</h2>
                 <div className={styles.table_big_box}>
                     <table className={styles.customers}>
                         <thead>
                             <tr>
                                 <th>S No.</th>
                                 <th>Property Detail</th>
-                                <th>10nc Document Contract</th>
+                                <th>TNC Document Contract</th>
                                 <th>Owners Document</th>
                                 <th>Payment Cheques</th>
                                 <th>Created At</th>
@@ -54,13 +57,25 @@ const AgentTransactions = () => {
                         </thead>
                         <tbody>
                             {transactions.length > 0 ? (
-                                transactions.map(transaction => (
+                                transactions.map((transaction, index) => (
                                     <tr key={transaction.id}>
-                                        <td>{transaction.id}</td>
+                                        <td>{index + 1}</td>
                                         <td>{transaction.property_detail}</td>
-                                        <td><a href={transaction['10nc_document_contract']} target="_blank" rel="noopener noreferrer">View Document</a></td>
-                                        <td><a href={transaction.owners_document} target="_blank" rel="noopener noreferrer">View Document</a></td>
-                                        <td><a href={transaction.payment_cheques} target="_blank" rel="noopener noreferrer">View Cheques</a></td>
+                                        <td>
+                                            <Link href={`https://a.khelogame.xyz/${transaction.tnc_document_contract}`} target="_blank" rel="noopener noreferrer">
+                                                View Document
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <Link href={`https://a.khelogame.xyz/${transaction.owners_document}`} target="_blank" rel="noopener noreferrer">
+                                                View Document
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <Link href={`https://a.khelogame.xyz/${transaction.payment_cheques}`} target="_blank" rel="noopener noreferrer">
+                                                View Cheque
+                                            </Link>
+                                        </td>
                                         <td>{new Date(transaction.created_at).toLocaleDateString()}</td>
                                         <td>{transaction.status}</td>
                                     </tr>
