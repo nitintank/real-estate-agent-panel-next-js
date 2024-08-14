@@ -67,7 +67,8 @@
 .profile_img_box img{
     width: 140px;
     height: 140px;
-    border-radius: 15px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .formInnerBox1{
