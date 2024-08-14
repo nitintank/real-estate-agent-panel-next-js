@@ -15,6 +15,7 @@ const AgentTransactions = () => {
                         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
                     }
                 });
+
                 if (!response.ok) {
                     console.error('Network response status:', response.status, response.statusText);
                     throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -28,6 +29,7 @@ const AgentTransactions = () => {
                 setLoading(false);
             }
         };
+
         fetchTransactions();
     }, []);
 
@@ -45,7 +47,7 @@ const AgentTransactions = () => {
                             <tr>
                                 <th>S No.</th>
                                 <th>Property Detail</th>
-                                <th>10nc Document Contract</th>
+                                <th>TNC Document Contract</th>
                                 <th>Owners Document</th>
                                 <th>Payment Cheques</th>
                                 <th>Created At</th>
@@ -54,13 +56,26 @@ const AgentTransactions = () => {
                         </thead>
                         <tbody>
                             {transactions.length > 0 ? (
-                                transactions.map(transaction => (
+                                transactions.map((transaction, index) => (
                                     <tr key={transaction.id}>
-                                        <td>{transaction.id}</td>
+                                        <td>{index + 1}</td>
                                         <td>{transaction.property_detail}</td>
-                                        <td><a href={transaction['10nc_document_contract']} target="_blank" rel="noopener noreferrer">View Document</a></td>
-                                        <td><a href={transaction.owners_document} target="_blank" rel="noopener noreferrer">View Document</a></td>
-                                        <td><a href={transaction.payment_cheques} target="_blank" rel="noopener noreferrer">View Cheques</a></td>
+                                        
+                                        <td>
+                                            <a href={`https://a.khelogame.xyz/${transaction.tnc_document_contract}`} target="_blank" rel="noopener noreferrer">
+                                                View Document
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href={`https://a.khelogame.xyz/${transaction.owners_document}`} target="_blank" rel="noopener noreferrer">
+                                                View Document
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href={`https://a.khelogame.xyz/${transaction.payment_cheques}`} target="_blank" rel="noopener noreferrer">
+                                                View Cheque
+                                            </a>
+                                        </td>
                                         <td>{new Date(transaction.created_at).toLocaleDateString()}</td>
                                         <td>{transaction.status}</td>
                                     </tr>

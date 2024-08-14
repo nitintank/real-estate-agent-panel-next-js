@@ -37,7 +37,7 @@ const AddTransaction = () => {
 
         const formData = new FormData();
         formData.append('property_detail', selectedProperty);
-        formData.append('10nc_document_contract', tncDocumentContract);
+        formData.append('tnc_document_contract', tncDocumentContract);
         formData.append('owners_document', ownersDocument);
         formData.append('payment_cheques', paymentCheques);
 
