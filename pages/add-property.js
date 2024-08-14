@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/AddProperty.module.css";
 import Image from 'next/image';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddProperty = () => {
     const [propertyName, setPropertyName] = useState('');
@@ -32,6 +34,7 @@ const AddProperty = () => {
         features: [],
         cleaningAndMaintenance: [],
     });
+    const [errors, setErrors] = useState({});
 
     const autocompleteRef = useRef(null);
 
@@ -47,8 +50,28 @@ const AddProperty = () => {
         setPropertySubtype('');
     };
 
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (!propertyType) newErrors.propertyType = 'Property type is required';
+        if (!plotUpArea) newErrors.plotUpArea = 'Plot Up Area is required';
+        if (!bedroom) newErrors.bedroom = 'Bedroom count is required';
+        if (!bathroom) newErrors.bathroom = 'Bathroom count is required';
+        if (!furnishing_type) newErrors.furnishing_type = 'Furnishing type is required';
+        if (!price) newErrors.price = 'Price is required';
+        if (!propertyName) newErrors.propertyName = 'Property title is required';
+        if (!description) newErrors.description = 'Description is required';
+        // if (imagePaths.length < 5) newErrors.imagePaths = 'At least 5 property images are required';
+        if (!area) newErrors.area = 'Area is required';
+
+        setErrors(newErrors);
+
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!validateForm()) return;
 
         const formData = new FormData();
         formData.append('property_name', propertyName);
@@ -93,8 +116,6 @@ const AddProperty = () => {
 
         try {
             const agentId = localStorage.getItem('agentId');
-            console.log('Agent ID:', agentId);
-            console.log('Agent ID:', token);
 
             const response = await fetch(`https://a.khelogame.xyz/agent-add-property?agent_id=${agentId}`, {
                 method: 'POST',
@@ -106,9 +127,11 @@ const AddProperty = () => {
 
             if (response.ok) {
                 const data = await response.json();
+                toast.success('Property Added Successfully!');
                 console.log(data);
             } else {
                 const errorData = await response.json();
+                toast.error(`Error: ${errorData.message}`);
                 console.error('Error:', errorData);
             }
         } catch (error) {
@@ -166,9 +189,20 @@ const AddProperty = () => {
         MultipleUnits: ['Multiple Units'],
     };
 
+    const handleMediaChange = (e) => {
+        const files = Array.from(e.target.files);
+        setMediaPaths((prevMediaPaths) => [...prevMediaPaths, ...files]);
+    };
+
+    const handleImageChange = (e) => {
+        const files = Array.from(e.target.files);
+        setImagePaths((prevImagePaths) => [...prevImagePaths, ...files]);
+    };
+
     return (
         <>
             <Navbar />
+            <ToastContainer />
             {/* <!-- Dashboard --> */}
             <section className={styles.dashboard_main_box}>
                 <h2>Add Property</h2>
@@ -178,11 +212,11 @@ const AddProperty = () => {
                         <input type="radio" value="Residential" id="Residential" name='property_type' onChange={handlePropertyTypeChange} />
                         <label htmlFor="Residential"><Image width={60} height={60} src="/images/icon-land-1.png" alt='' /> Residential</label>
                         <input type="radio" value="Commercial" id="Commercial" name='property_type' onChange={handlePropertyTypeChange} />
-                        <label htmlFor="Commercial"><Image width={60} height={60} src="/images/icon-land-2.png" alt=''/> Commercial</label>
+                        <label htmlFor="Commercial"><Image width={60} height={60} src="/images/icon-land-2.png" alt='' /> Commercial</label>
                         <input type="radio" value="Land" id="Land" name='property_type' onChange={handlePropertyTypeChange} />
-                        <label htmlFor="Land"><Image width={60} height={60} src="/images/icon-land-3.png" alt=''/> Land</label>
+                        <label htmlFor="Land"><Image width={60} height={60} src="/images/icon-land-3.png" alt='' /> Land</label>
                         <input type="radio" value="MultipleUnits" id="MultipleUnits" name='property_type' onChange={handlePropertyTypeChange} />
-                        <label htmlFor="MultipleUnits"><Image width={60} height={60} src="/images/icon-land-4.png" alt=''/> Multiple Units</label>
+                        <label htmlFor="MultipleUnits"><Image width={60} height={60} src="/images/icon-land-4.png" alt='' /> Multiple Units</label>
                     </div>
                     }
                     {propertyType && !propertySubtype && (
@@ -206,14 +240,16 @@ const AddProperty = () => {
                                     onChange={(e) => setPropertyName(e.target.value)}
                                     placeholder="Add Property Title"
                                 />
+                                {errors.propertyName && <p className={styles.errorText}>{errors.propertyName}</p>}
+
                                 <textarea name="" id="" value={description} onChange={(e) => setDescription(e.target.value)}
                                     placeholder="Add Property Description" rows='5'></textarea>
-                                <input
-                                    type="text"
-                                    value={price}
-                                    onChange={(e) => setPrice(e.target.value)}
-                                    placeholder="Add Price"
+                                {errors.description && <p className={styles.errorText}>{errors.description}</p>}
+
+                                <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Add Price"
                                 />
+                                {errors.price && <p className={styles.errorText}>{errors.price}</p>}
+
                                 <select value={saleOrRent} onChange={(e) => setSaleOrRent(e.target.value)}>
                                     <option value="">Select Listing Type</option>
                                     <option value="Rent">For Rent</option>
@@ -228,12 +264,14 @@ const AddProperty = () => {
                                         <option key={i} value={i}>{i}</option>
                                     ))}
                                 </select>
+                                {errors.bedroom && <p className={styles.errorText}>{errors.bedroom}</p>}
                                 <select value={bathroom} onChange={(e) => setBathroom(e.target.value)}>
                                     <option value="">Select Bathroom</option>
                                     {[...Array(11)].map((_, i) => (
                                         <option key={i} value={i}>{i}</option>
                                     ))}
                                 </select>
+                                {errors.bathroom && <p className={styles.errorText}>{errors.bathroom}</p>}
                                 <select
                                     value={furnishing_type}
                                     onChange={(e) => setFurnishing_type(e.target.value)}
@@ -243,6 +281,7 @@ const AddProperty = () => {
                                     <option value="Fully Furnished">Fully Furnished</option>
                                     <option value="Unfurnished">Unfurnished</option>
                                 </select>
+                                {errors.furnishing_type && <p className={styles.errorText}>{errors.furnishing_type}</p>}
                                 <input
                                     type="text"
                                     value={location}
@@ -267,6 +306,7 @@ const AddProperty = () => {
                                     onChange={(e) => setArea(e.target.value)}
                                     placeholder="Add Area"
                                 />
+                                {errors.area && <p className={styles.errorText}>{errors.area}</p>}
                                 <input
                                     type="text"
                                     value={buildArea}
@@ -279,6 +319,7 @@ const AddProperty = () => {
                                     onChange={(e) => setPlotUpArea(e.target.value)}
                                     placeholder="Enter Plot Up Area"
                                 />
+                                {errors.plotUpArea && <p className={styles.errorText}>{errors.plotUpArea}</p>}
                                 <input
                                     type="text"
                                     value={apartmentNumber}
@@ -288,17 +329,31 @@ const AddProperty = () => {
                             </div>
                             <div className={styles.propertyFormBox}>
                                 <label>Add Property Images</label>
-                                <input
-                                    type="file"
-                                    onChange={(e) => setMediaPaths(Array.from(e.target.files))}
-                                    multiple
-                                />
+                                <input type="file" onChange={handleMediaChange} multiple />
+                                <div>
+                                    {mediaPaths.map((file, index) => (
+                                        <img
+                                            key={index}
+                                            src={URL.createObjectURL(file)}
+                                            alt={`Property Image ${index + 1}`}
+                                            style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0px 10px', borderRadius: '10px' }}
+                                        />
+                                    ))}
+                                </div>
                                 <label>Floor Map Images</label>
-                                <input
-                                    type="file"
-                                    onChange={(e) => setImagePaths(Array.from(e.target.files))}
-                                    multiple
-                                />
+                                <input type="file" onChange={handleImageChange} multiple />
+                                <div>
+                                    {imagePaths.map((file, index) => (
+                                        <img
+                                            key={index}
+                                            src={URL.createObjectURL(file)}
+                                            alt={`Floor Map Image ${index + 1}`}
+                                            style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0px 10px', borderRadius: '10px' }}
+                                        />
+                                    ))}
+                                </div>
+                                <label>Add Property Videos</label>
+                                <input type="file" onChange={(e) => setVideoPaths(Array.from(e.target.files))} multiple />
                             </div>
                             <div className={styles.propertyFormBox3}>
                                 <h3>Property Details</h3>
