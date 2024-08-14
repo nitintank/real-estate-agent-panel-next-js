@@ -347,7 +347,7 @@ const AddProperty = () => {
                                     {amenityCheckbox('cleaningAndMaintenance', 'cleaning services')}
                                 </div>
                             </div>
-                            <button type="submit" className={styles.submitBtn}>Add Property <i class="fa-solid fa-arrow-right"></i></button>
+                            <button type="submit" className={styles.submitBtn}>Add Property <i class='bx bxs-right-arrow-circle'></i></button>
                         </>}
                 </form>
             </section>

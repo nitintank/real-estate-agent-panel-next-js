@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from "@/styles/PropertyList.module.css";
 import Navbar from "@/components/Navbar";
+import Link from 'next/link';
 
 const AgentTransactions = () => {
     const [transactions, setTransactions] = useState([]);
@@ -40,7 +41,7 @@ const AgentTransactions = () => {
         <>
             <Navbar />
             <section className={styles.dashboard_main_box}>
-                <h2>Agent Transactions</h2>
+                <h2>Transactions List</h2>
                 <div className={styles.table_big_box}>
                     <table className={styles.customers}>
                         <thead>
@@ -60,21 +61,20 @@ const AgentTransactions = () => {
                                     <tr key={transaction.id}>
                                         <td>{index + 1}</td>
                                         <td>{transaction.property_detail}</td>
-                                        
                                         <td>
-                                            <a href={`https://a.khelogame.xyz/${transaction.tnc_document_contract}`} target="_blank" rel="noopener noreferrer">
+                                            <Link href={`https://a.khelogame.xyz/${transaction.tnc_document_contract}`} target="_blank" rel="noopener noreferrer">
                                                 View Document
-                                            </a>
+                                            </Link>
                                         </td>
                                         <td>
-                                            <a href={`https://a.khelogame.xyz/${transaction.owners_document}`} target="_blank" rel="noopener noreferrer">
+                                            <Link href={`https://a.khelogame.xyz/${transaction.owners_document}`} target="_blank" rel="noopener noreferrer">
                                                 View Document
-                                            </a>
+                                            </Link>
                                         </td>
                                         <td>
-                                            <a href={`https://a.khelogame.xyz/${transaction.payment_cheques}`} target="_blank" rel="noopener noreferrer">
+                                            <Link href={`https://a.khelogame.xyz/${transaction.payment_cheques}`} target="_blank" rel="noopener noreferrer">
                                                 View Cheque
-                                            </a>
+                                            </Link>
                                         </td>
                                         <td>{new Date(transaction.created_at).toLocaleDateString()}</td>
                                         <td>{transaction.status}</td>

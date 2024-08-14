@@ -38,7 +38,7 @@ const Login = () => {
             localStorage.setItem('agentId', response.id);
             localStorage.setItem('userId', response.user_id);
 
-            location.href = "/"
+            location.href = "/property-list"
         }
     }
 

@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from "@/components/Navbar";
-import styles from "@/styles/AddProperty.module.css";
+import styles from "@/styles/TransactionApproval.module.css";
 
 const AddTransaction = () => {
     const [propertyDetails, setPropertyDetails] = useState([]);
@@ -70,20 +69,18 @@ const AddTransaction = () => {
                 <h2>Transaction Approval</h2>
                 <form className={styles.formMainBox} onSubmit={handleSubmit}>
                     <div className={styles.propertyFormBox}>
-                        <div className={styles.propertyFormBox}>
-                            <select value={selectedProperty} onChange={(e) => setSelectedProperty(e.target.value)}>
-                                <option value="">Select Property Detail</option>
-                                {propertyDetails.map(property => (
-                                    <option key={property.id} value={property.property_name}>{property.property_name}</option>
-                                ))}
-                            </select>
-                        </div>
+                        <select value={selectedProperty} onChange={(e) => setSelectedProperty(e.target.value)}>
+                            <option value="">Select Property Detail</option>
+                            {propertyDetails.map(property => (
+                                <option key={property.id} value={property.property_name}>{property.property_name}</option>
+                            ))}
+                        </select>
                         <label>10NC Document Contract</label>
                         <input
                             type="file"
                             onChange={(e) => setTncDocumentContract(e.target.files[0])}
                         />
-                        <label>Owner's Document</label>
+                        <label>{`Owner's Document`}</label>
                         <input
                             type="file"
                             onChange={(e) => setOwnersDocument(e.target.files[0])}
@@ -95,7 +92,7 @@ const AddTransaction = () => {
                         />
                     </div>
                     <button type="submit" className={styles.submitBtn}>
-                        Add Transaction <i className="fa-solid fa-arrow-right"></i>
+                        Add Transaction <i class='bx bxs-right-arrow-circle'></i>
                     </button>
                 </form>
             </section>

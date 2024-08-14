@@ -34,7 +34,7 @@ const Navbar = () => {
 
                 <div className={styles.navbar_content}>
                     <Link href="/profile"><Image width={200} height={200} src="/images/profile.jpg" alt="" className={styles.profile} /></Link>
-                    <button className={styles.logout_btn} onClick={handleLogout}><i class='bx bx-log-out'></i> Log Out</button>
+                    <button className={styles.logout_btn} onClick={handleLogout}><i className='bx bx-log-out'></i> Log Out</button>
                 </div>
             </nav>
 
@@ -43,14 +43,14 @@ const Navbar = () => {
                 <div className={styles.menu_content}>
                     <ul className={styles.menu_items}>
                         {/* <!-- start --> */}
-                        <li className={styles.item}>
+                        {/* <li className={styles.item}>
                             <Link href="/" className={styles.nav_link}>
                                 <span className={styles.navlink_icon}>
                                     <i className="bx bxs-dashboard"></i>
                                 </span>
                                 <span className={styles.navlink}>Dashboard</span>
                             </Link>
-                        </li>
+                        </li> */}
                         {/* <!-- end --> */}
                     </ul>
 
@@ -59,7 +59,7 @@ const Navbar = () => {
                         <li className={styles.item}>
                             <Link href="/add-property" className={styles.nav_link}>
                                 <span className={styles.navlink_icon}>
-                                    <i class='bx bxs-add-to-queue'></i>
+                                    <i className='bx bxs-add-to-queue'></i>
                                 </span>
                                 <span className={styles.navlink}>Add Property</span>
                             </Link>
@@ -86,7 +86,7 @@ const Navbar = () => {
                         <li className={styles.item}>
                             <Link href="/profile" className={styles.nav_link}>
                                 <span className={styles.navlink_icon}>
-                                    <i class='bx bxs-user-circle'></i>
+                                    <i className='bx bxs-user-circle'></i>
                                 </span>
                                 <span className={styles.navlink}>Profile</span>
                             </Link>
@@ -94,27 +94,36 @@ const Navbar = () => {
                         <li className={styles.item}>
                             <Link href="/transaction-approval" className={styles.nav_link}>
                                 <span className={styles.navlink_icon}>
-                                    <i class='bx bxs-user-circle'></i>
+                                    <i className='bx bx-transfer-alt'></i>
                                 </span>
-                                <span className={styles.navlink}> Transaction-approval</span>
+                                <span className={styles.navlink}> Submit Transaction</span>
                             </Link>
                         </li>
-                        
+
                         <li className={styles.item}>
-                            <Link href="/all-traansaction-approval" className={styles.nav_link}>
+                            <Link href="/all-transaction-approval" className={styles.nav_link}>
                                 <span className={styles.navlink_icon}>
-                                    <i class='bx bxs-user-circle'></i>
+                                    <i className='bx bx-list-ol'></i>
                                 </span>
-                                <span className={styles.navlink}> All transaction-approval</span>
+                                <span className={styles.navlink}> Transaction List</span>
                             </Link>
                         </li>
-                        
+
                         <li className={styles.item}>
                             <Link href="/wallet-coins" className={styles.nav_link}>
                                 <span className={styles.navlink_icon}>
-                                    <i class='bx bxs-user-circle'></i>
+                                    <i className='bx bxs-coin'></i>
                                 </span>
                                 <span className={styles.navlink}>Wallet Coins</span>
+                            </Link>
+                        </li>
+
+                        <li className={styles.item}>
+                            <Link href="/redeem-coins" className={styles.nav_link}>
+                                <span className={styles.navlink_icon}>
+                                    <i className='bx bxs-plus-circle'></i>
+                                </span>
+                                <span className={styles.navlink}>Redeem Coins</span>
                             </Link>
                         </li>
                     </ul>
