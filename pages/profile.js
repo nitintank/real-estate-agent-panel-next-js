@@ -19,6 +19,31 @@ const Profile = () => {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
 
+    // Utility function to check if the token has expired
+    const isTokenExpired = (token) => {
+        if (!token) return true;
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const { exp } = JSON.parse(jsonPayload);
+        const currentTime = Math.floor(Date.now() / 1000);
+
+        return exp < currentTime;
+    };
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken');
+        const username = localStorage.getItem('username');
+
+        // If token is not found or token is expired, redirect to login
+        if (!accessToken || !username || isTokenExpired(accessToken)) {
+            location.href = "/login";
+        }
+    }, []);
+
     useEffect(() => {
         fetchProfileData();
     }, []);
@@ -162,11 +187,11 @@ const Profile = () => {
                         <form onSubmit={handleChangePassword}>
                             <div className={styles.formInnerBox1}>
                                 <input type="password" placeholder="Old Password*" value={oldPassword}
-                            onChange={(e) => setOldPassword(e.target.value)} />
+                                    onChange={(e) => setOldPassword(e.target.value)} />
                                 <input type="password" placeholder="New Password*" value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)} />
+                                    onChange={(e) => setNewPassword(e.target.value)} />
                                 <input type="password" placeholder="Confirm Password*" value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}/>
+                                    onChange={(e) => setConfirmPassword(e.target.value)} />
                             </div>
                             <div className={styles.formInnerBox1}>
                                 <button type="submit">Update <i class='bx bx-right-arrow-alt'></i></button>
