@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import styles from "@/styles/WalletCoins.module.css";
 import Navbar from "@/components/Navbar";
 import Image from 'next/image';
+import Link from 'next/link';
 
 const RedeemCoins = () => {
     const [wallets, setWallets] = useState([]);
+    const [transtion,setTranstion] = useState([]);
     const [properties, setProperties] = useState([]);
-    const [selectedProperty, setSelectedProperty] = useState('');
+    // const [selectedPropertyId, setSelectedPropertyId] = useState('');
+    // const [selectedProperty, setSelectedProperty] = useState('');
+    const [selectedPropertyId, setSelectedPropertyId] = useState(''); // Track property ID
+    const [selectedPropertyName, setSelectedPropertyName] = useState('');
     const [requestedCoins, setRequestedCoins] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -85,16 +90,43 @@ const RedeemCoins = () => {
                     }
 
                     const data = await response.json();
-                    setProperties(data || []);  // Handle the case where 'properties' might not be present
+                    setProperties(data);  // Handle the case where 'properties' might not be present
+                    console.log(data)
                 } catch (error) {
                     setError(error.message);
                 }
             }
         };
 
+        const fetchTranstionHistory = async () => {
+            if (!agentId) return; // Don't fetch if agentId is not available
+
+            try {
+                const response = await fetch('https://a.khelogame.xyz/agent/wallet-history', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                if (!response.ok) {
+                    console.error('Network response status:', response.status, response.statusText);
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                setTranstion(data.transactions || []); 
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
         fetchWallets();
         fetchProperties();
+        fetchTranstionHistory();
     }, [agentId]);
+
+   
 
     const handleRequestSubmit = async (e) => {
         e.preventDefault();
@@ -109,13 +141,13 @@ const RedeemCoins = () => {
                     'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify({
-                    property_name: selectedProperty,
+                    property_id: selectedPropertyId, // Pass property ID
+                    property_name: selectedPropertyName, // Pass property name
                     coins: parseInt(requestedCoins, 10)
                 })
             });
 
             if (!response.ok) {
-                console.error('Network response status:', response.status, response.statusText);
                 throw new Error(`Network response was not ok: ${response.statusText}`);
             }
 
@@ -125,6 +157,15 @@ const RedeemCoins = () => {
             setRequestError(error.message);
         }
     };
+
+
+    const handlePropertyChange = (e) => {
+        const selectedOption = e.target.options[e.target.selectedIndex];
+        setSelectedPropertyId(selectedOption.value);
+        setSelectedPropertyName(selectedOption.text);
+    };
+
+    
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
@@ -145,16 +186,62 @@ const RedeemCoins = () => {
                 <h3>Redeem Coins</h3>
                 <form onSubmit={handleRequestSubmit} className={styles.propertyTypeBox}>
                     <label>Select Property</label>
-                    <select value={selectedProperty} onChange={(e) => setSelectedProperty(e.target.value)} required>
-                        <option value="">Select a Property</option>
-                        {properties.map(property => (
-                            <option key={property.id} value={property.property_name}>{property.property_name}</option>
-                        ))}
-                    </select>
+
+                 
+                   
+
+                    <select value={selectedPropertyId} onChange={handlePropertyChange}>
+                            <option value="">Select Property Detail</option>
+                            {properties.map(property => (
+                                <option key={property.id} value={property.id}>
+                                    {property.property_name}
+                                </option>
+                            ))}
+                        </select>
+
                     <label> Enter Coins</label>
                     <input type="number" value={requestedCoins} onChange={(e) => setRequestedCoins(e.target.value)} required />
                     <button type="submit" className={styles.submitBtn}>Submit Request</button>
                 </form>
+
+                <br/>
+                <h2>Transactions History</h2>
+                <div className={styles.table_big_box}>
+              
+                    <table className={styles.customers}>
+                        <thead>
+                            <tr>
+                                <th>S No.</th>
+                                <th>Property Name</th>
+                                <th>Requested Coins</th>
+                                <th>Status</th>
+                                <th>Created At</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {transtion.length > 0 ? transtion.map((transactions, index) => (
+                                <tr key={transactions.id}>
+                                    <td>{index + 1}</td>
+                                    <Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${transactions.property_id}`}>
+                                    <td>{transactions.property_name}</td>
+                                        </Link>
+                                   
+                                    <td>{transactions.requested_coins}</td>
+                                    <td>{transactions.status}</td>
+                                    
+                                    <td>{new Date(transactions.created_at).toLocaleString()}</td>
+                                    
+                                </tr>
+                            )) : (
+                                <tr>
+                                    <td colSpan="6">No data available</td>
+                                </tr>
+                            )}
+                        
+                        </tbody>
+                    </table>
+                </div>
 
             </section>
         </>

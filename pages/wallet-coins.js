@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from "@/styles/WalletCoins.module.css";
 import Navbar from "@/components/Navbar";
 import Image from 'next/image';
+import Link from 'next/link';
 
 const AgentWalletCoin = () => {
     const [wallets, setWallets] = useState([]);
@@ -157,7 +158,10 @@ const AgentWalletCoin = () => {
                             {wallets.length > 0 ? wallets.map((wallet, index) => (
                                 <tr key={wallet.id}>
                                     <td>{index + 1}</td>
+                                    <Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${wallet.property_id}`}>
                                     <td>{wallet.property_name}</td>
+                                        </Link>
+                                   
                                     <td>{wallet.coins}</td>
                                     <td>{new Date(wallet.created_at).toLocaleString()}</td>
                                     <td>{new Date(wallet.updated_at).toLocaleString()}</td>

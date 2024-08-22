@@ -85,7 +85,10 @@ const AgentTransactions = () => {
                                 transactions.map((transaction, index) => (
                                     <tr key={transaction.id}>
                                         <td>{index + 1}</td>
+                                        <Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${transaction.property_id}`}>
                                         <td>{transaction.property_detail}</td>
+                                        </Link>
+                                        {/* <td>{transaction.property_detail}</td> */}
                                         <td>
                                             <Link href={`https://a.khelogame.xyz/${transaction.tnc_document_contract}`} target="_blank" rel="noopener noreferrer">
                                                 View Document
