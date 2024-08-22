@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from "@/styles/Login.module.css";
+import Image from 'next/image';
 
 const Login = () => {
     const [identifier, setIdentifier] = useState('')
@@ -45,9 +46,12 @@ const Login = () => {
     return (
         <>
             <div className={styles.body}>
+                <div className={styles.wrapper_2}>
+                    <Image src="/images/prop-agent-img.png" width={200} height={200} alt='' />
+                </div>
                 <div className={styles.wrapper}>
-                    <h2>Agent Login</h2>
                     <form className={styles.form} method='POST' onSubmit={handleSubmit}>
+                        <h2>Agent Login</h2>
                         <div className={styles.input_field}>
                             <input type="text" placeholder="Enter Email or Phone No." name='identifier' value={identifier} onChange={handleChange} required />
                             <label htmlFor="identifier">Enter Email or Phone No.</label>
@@ -56,7 +60,7 @@ const Login = () => {
                             <input type="text" placeholder="Enter Password" name='password' value={password} onChange={handleChange} required />
                             <label htmlFor="password">Enter your password</label>
                         </div>
-                        <button type="submit">Log In</button>
+                        <button type="submit">Login</button>
                     </form>
                 </div>
             </div>
