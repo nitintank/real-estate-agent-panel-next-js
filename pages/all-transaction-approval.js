@@ -85,22 +85,24 @@ const AgentTransactions = () => {
                                 transactions.map((transaction, index) => (
                                     <tr key={transaction.id}>
                                         <td>{index + 1}</td>
-                                        <Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${transaction.property_id}`}>
-                                        <td>{transaction.property_detail}</td>
-                                        </Link>
+                                        <td>
+                                            <Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${transaction.property_id}`} target='_blank' className={styles.link_tag}>
+                                                {transaction.property_detail}
+                                            </Link>
+                                        </td>
                                         {/* <td>{transaction.property_detail}</td> */}
                                         <td>
-                                            <Link href={`https://a.khelogame.xyz/${transaction.tnc_document_contract}`} target="_blank" rel="noopener noreferrer">
+                                            <Link href={`https://a.khelogame.xyz/${transaction.tnc_document_contract}`} target="_blank" rel="noopener noreferrer" className={styles.document_link}>
                                                 View Document
                                             </Link>
                                         </td>
                                         <td>
-                                            <Link href={`https://a.khelogame.xyz/${transaction.owners_document}`} target="_blank" rel="noopener noreferrer">
+                                            <Link href={`https://a.khelogame.xyz/${transaction.owners_document}`} target="_blank" rel="noopener noreferrer" className={styles.document_link}>
                                                 View Document
                                             </Link>
                                         </td>
                                         <td>
-                                            <Link href={`https://a.khelogame.xyz/${transaction.payment_cheques}`} target="_blank" rel="noopener noreferrer">
+                                            <Link href={`https://a.khelogame.xyz/${transaction.payment_cheques}`} target="_blank" rel="noopener noreferrer" className={styles.document_link}>
                                                 View Cheque
                                             </Link>
                                         </td>

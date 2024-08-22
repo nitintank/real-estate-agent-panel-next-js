@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/TransactionApproval.module.css";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddTransaction = () => {
     const [propertyDetails, setPropertyDetails] = useState([]);
@@ -9,7 +11,32 @@ const AddTransaction = () => {
     const [tncDocumentContract, setTncDocumentContract] = useState(null);
     const [ownersDocument, setOwnersDocument] = useState(null);
     const [paymentCheques, setPaymentCheques] = useState(null);
-    const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(false); // Loading state
+
+    // Utility function to check if the token has expired
+    const isTokenExpired = (token) => {
+        if (!token) return true;
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const { exp } = JSON.parse(jsonPayload);
+        const currentTime = Math.floor(Date.now() / 1000);
+
+        return exp < currentTime;
+    };
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken');
+        const username = localStorage.getItem('username');
+
+        // If token is not found or token is expired, redirect to login
+        if (!accessToken || !username || isTokenExpired(accessToken)) {
+            location.href = "/login";
+        }
+    }, []);
 
     useEffect(() => {
         const fetchProperties = async () => {
@@ -34,6 +61,7 @@ const AddTransaction = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true); // Start loading
 
         const formData = new FormData();
         formData.append('property_id', selectedPropertyId);
@@ -56,11 +84,11 @@ const AddTransaction = () => {
             }
 
             const result = await response.json();
-            setMessage('Transaction created successfully and is pending approval');
-            console.log(result);
+            toast.success('Transaction Created Successfully and Is Pending Approval!');
         } catch (error) {
-            console.error('Error creating transaction:', error);
-            setMessage('Error creating transaction. Please try again.');
+            toast.error(`Error Creating Transaction, Please Try Again.`);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -73,6 +101,7 @@ const AddTransaction = () => {
     return (
         <>
             <Navbar />
+            <ToastContainer />
             <section className={styles.dashboard_main_box}>
                 <h2>Transaction Approval</h2>
                 <form className={styles.formMainBox} onSubmit={handleSubmit}>
@@ -101,8 +130,8 @@ const AddTransaction = () => {
                             onChange={(e) => setPaymentCheques(e.target.files[0])}
                         />
                     </div>
-                    <button type="submit" className={styles.submitBtn}>
-                        Add Transaction <i className='bx bxs-right-arrow-circle'></i>
+                    <button type="submit" className={styles.submitBtn} disabled={loading}>
+                        {loading ? 'Submitting...' : 'Add Transaction'} <i className='bx bxs-right-arrow-circle'></i>
                     </button>
                 </form>
             </section>

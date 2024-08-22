@@ -78,16 +78,16 @@ const AddProperty = () => {
     const validateForm = () => {
         const newErrors = {};
 
-        if (!propertyType) newErrors.propertyType = 'Property type is required';
-        if (!plotUpArea) newErrors.plotUpArea = 'Plot Up Area is required';
-        if (!bedroom) newErrors.bedroom = 'Bedroom count is required';
-        if (!bathroom) newErrors.bathroom = 'Bathroom count is required';
-        if (!furnishing_type) newErrors.furnishing_type = 'Furnishing type is required';
-        if (!price) newErrors.price = 'Price is required';
-        if (!propertyName) newErrors.propertyName = 'Property title is required';
-        if (!description) newErrors.description = 'Description is required';
+        if (!propertyType) newErrors.propertyType = 'Property Type Is Required';
+        if (!plotUpArea) newErrors.plotUpArea = 'Plot Up Area Is Required';
+        if (!bedroom) newErrors.bedroom = 'Bedroom Count Is Required';
+        if (!bathroom) newErrors.bathroom = 'Bathroom Count Is Required';
+        if (!furnishing_type) newErrors.furnishing_type = 'Furnishing Type Is Required';
+        if (!price) newErrors.price = 'Price Is Required';
+        if (!propertyName) newErrors.propertyName = 'Property Title Is Required';
+        if (!description) newErrors.description = 'Description Is Required';
         // if (imagePaths.length < 5) newErrors.imagePaths = 'At least 5 property images are required';
-        if (!area) newErrors.area = 'Area is required';
+        if (!area) newErrors.area = 'Area Is Required';
 
         setErrors(newErrors);
 
@@ -133,11 +133,9 @@ const AddProperty = () => {
             formData.append('document_path', propertydocumentFile);
         });
 
-
         if (Object.values(amenities).flat().length > 0) {
             formData.append('amenities', JSON.stringify(amenities));
         }
-
 
         try {
             const agentId = localStorage.getItem('agentId');

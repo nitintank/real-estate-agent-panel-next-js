@@ -151,24 +151,24 @@ const AgentWalletCoin = () => {
                                 <th>Property Name</th>
                                 <th>Coins</th>
                                 <th>Created At</th>
-                                <th>Updated At</th>
+                                {/* <th>Updated At</th> */}
                             </tr>
                         </thead>
                         <tbody>
                             {wallets.length > 0 ? wallets.map((wallet, index) => (
                                 <tr key={wallet.id}>
                                     <td>{index + 1}</td>
-                                    <Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${wallet.property_id}`}>
-                                    <td>{wallet.property_name}</td>
-                                        </Link>
-                                   
+                                    <td>
+                                        <Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${wallet.property_id}`} className={styles.link_tag} target='_blank'>
+                                            {wallet.property_name}</Link>
+                                    </td>
                                     <td>{wallet.coins}</td>
                                     <td>{new Date(wallet.created_at).toLocaleString()}</td>
-                                    <td>{new Date(wallet.updated_at).toLocaleString()}</td>
+                                    {/* <td>{new Date(wallet.updated_at).toLocaleString()}</td> */}
                                 </tr>
                             )) : (
                                 <tr>
-                                    <td colSpan="6">No data available</td>
+                                    <td colSpan="6">No Data Available</td>
                                 </tr>
                             )}
                         </tbody>

@@ -3,10 +3,12 @@ import styles from "@/styles/WalletCoins.module.css";
 import Navbar from "@/components/Navbar";
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RedeemCoins = () => {
     const [wallets, setWallets] = useState([]);
-    const [transtion,setTranstion] = useState([]);
+    const [transtion, setTranstion] = useState([]);
     const [properties, setProperties] = useState([]);
     // const [selectedPropertyId, setSelectedPropertyId] = useState('');
     // const [selectedProperty, setSelectedProperty] = useState('');
@@ -18,6 +20,7 @@ const RedeemCoins = () => {
     const [requestError, setRequestError] = useState(null);
     const [requestSuccess, setRequestSuccess] = useState(null);
     const [agentId, setAgentId] = useState(null);
+    const [selectedSection, setSelectedSection] = useState('redeemCoins');
 
     // Utility function to check if the token has expired
     const isTokenExpired = (token) => {
@@ -113,7 +116,7 @@ const RedeemCoins = () => {
                 }
 
                 const data = await response.json();
-                setTranstion(data.transactions || []); 
+                setTranstion(data.transactions || []);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -126,7 +129,9 @@ const RedeemCoins = () => {
         fetchTranstionHistory();
     }, [agentId]);
 
-   
+    const handleSectionChange = (event) => {
+        setSelectedSection(event.target.value);
+    };
 
     const handleRequestSubmit = async (e) => {
         e.preventDefault();
@@ -153,11 +158,12 @@ const RedeemCoins = () => {
 
             const data = await response.json();
             setRequestSuccess(data.message || 'Coin request submitted successfully');
+            toast.success('Coin Request Submitted Successfully!');
         } catch (error) {
             setRequestError(error.message);
+            toast.error(error.message);
         }
     };
-
 
     const handlePropertyChange = (e) => {
         const selectedOption = e.target.options[e.target.selectedIndex];
@@ -165,16 +171,15 @@ const RedeemCoins = () => {
         setSelectedPropertyName(selectedOption.text);
     };
 
-    
-
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
     return (
         <>
             <Navbar />
+            <ToastContainer />
             <section className={styles.dashboard_main_box}>
-                <h2>Wallet Coins</h2>
+                <h2>Total Wallet Coins</h2>
                 <div className={styles.coins_big_box}>
                     <Image width={50} height={50} src="/images/coin-img.png" alt='' />
                     {wallets.length > 0 && (
@@ -183,66 +188,88 @@ const RedeemCoins = () => {
                     <p>Total Coins</p>
                 </div>
 
-                <h3>Redeem Coins</h3>
-                <form onSubmit={handleRequestSubmit} className={styles.propertyTypeBox}>
-                    <label>Select Property</label>
-
-                 
-                   
-
-                    <select value={selectedPropertyId} onChange={handlePropertyChange}>
-                            <option value="">Select Property Detail</option>
-                            {properties.map(property => (
-                                <option key={property.id} value={property.id}>
-                                    {property.property_name}
-                                </option>
-                            ))}
-                        </select>
-
-                    <label> Enter Coins</label>
-                    <input type="number" value={requestedCoins} onChange={(e) => setRequestedCoins(e.target.value)} required />
-                    <button type="submit" className={styles.submitBtn}>Submit Request</button>
-                </form>
-
-                <br/>
-                <h2>Transactions History</h2>
-                <div className={styles.table_big_box}>
-              
-                    <table className={styles.customers}>
-                        <thead>
-                            <tr>
-                                <th>S No.</th>
-                                <th>Property Name</th>
-                                <th>Requested Coins</th>
-                                <th>Status</th>
-                                <th>Created At</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {transtion.length > 0 ? transtion.map((transactions, index) => (
-                                <tr key={transactions.id}>
-                                    <td>{index + 1}</td>
-                                    <Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${transactions.property_id}`}>
-                                    <td>{transactions.property_name}</td>
-                                        </Link>
-                                   
-                                    <td>{transactions.requested_coins}</td>
-                                    <td>{transactions.status}</td>
-                                    
-                                    <td>{new Date(transactions.created_at).toLocaleString()}</td>
-                                    
-                                </tr>
-                            )) : (
-                                <tr>
-                                    <td colSpan="6">No data available</td>
-                                </tr>
-                            )}
-                        
-                        </tbody>
-                    </table>
+                <div className={styles.radioInput}>
+                    <label>
+                        <input
+                            value="redeemCoins"
+                            name="value-radio"
+                            type="radio"
+                            checked={selectedSection === 'redeemCoins'}
+                            onChange={handleSectionChange}
+                        />
+                        <span>Redeem Coins</span>
+                    </label>
+                    <label>
+                        <input
+                            value="transactionHistory"
+                            name="value-radio"
+                            type="radio"
+                            checked={selectedSection === 'transactionHistory'}
+                            onChange={handleSectionChange}
+                        />
+                        <span>Transaction History</span>
+                    </label>
+                    <span className={styles.selection}></span>
                 </div>
 
+                {selectedSection === 'redeemCoins' && (
+                    <>
+                        <h3>Redeem Coins</h3>
+                        <form onSubmit={handleRequestSubmit} className={styles.propertyTypeBox}>
+                            <label>Select Property</label>
+
+                            <select value={selectedPropertyId} onChange={handlePropertyChange}>
+                                <option value="">Select Property Detail</option>
+                                {properties.map(property => (
+                                    <option key={property.id} value={property.id}>
+                                        {property.property_name}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <label> Enter Coins</label>
+                            <input type="number" value={requestedCoins} onChange={(e) => setRequestedCoins(e.target.value)} required />
+                            <button type="submit" className={styles.submitBtn}>Submit Request</button>
+                        </form>
+                    </>
+                )}
+
+                {selectedSection === 'transactionHistory' && (
+                    <>
+                        <h3>Transaction History</h3>
+                        <div className={styles.table_big_box}>
+                            <table className={styles.customers}>
+                                <thead>
+                                    <tr>
+                                        <th>S No.</th>
+                                        <th>Property Name</th>
+                                        <th>Requested Coins</th>
+                                        <th>Status</th>
+                                        <th>Created At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {transtion.length > 0 ? transtion.map((transactions, index) => (
+                                        <tr key={transactions.id}>
+                                            <td>{index + 1}</td>
+                                            <td><Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${transactions.property_id}`} target='_blank' className={styles.link_tag}>
+                                                {transactions.property_name}
+                                            </Link>
+                                            </td>
+                                            <td>{transactions.requested_coins}</td>
+                                            <td>{transactions.status}</td>
+                                            <td>{new Date(transactions.created_at).toLocaleString()}</td>
+                                        </tr>
+                                    )) : (
+                                        <tr>
+                                            <td colSpan="6">No Data Available</td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </>
+                )}
             </section>
         </>
     );
