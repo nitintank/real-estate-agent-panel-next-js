@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const PropertyList = () => {
     const [properties, setProperties] = useState([]);
@@ -118,7 +119,7 @@ const PropertyList = () => {
                             {properties.map(property => {
                                 return (
                                     <tr key={property.id}>
-                                        <td>{property.property_name}</td>
+                                        <td><Link href={`https://real-estate-gray-zeta.vercel.app/property?id=${property.id}`} target='_blank' className={styles.link_tag}>{property.property_name}</Link></td>
                                         <td>
                                             <Image
                                                 width={200}
