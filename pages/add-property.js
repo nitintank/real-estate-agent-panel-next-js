@@ -35,6 +35,7 @@ const AddProperty = () => {
         cleaningAndMaintenance: [],
     });
     const [errors, setErrors] = useState({});
+    const [progress, setProgress] = useState(0);
 
     const autocompleteRef = useRef(null);
 
@@ -74,6 +75,53 @@ const AddProperty = () => {
         setPropertyType(e.target.value);
         setPropertySubtype('');
     };
+
+    useEffect(() => {
+        // Calculate form progress
+        const filledFields = [
+            propertyName,
+            propertyType,
+            propertySubtype,
+            price,
+            location,
+            description,
+            bedroom,
+            bathroom,
+            size,
+            area,
+            parking,
+            buildArea,
+            plotUpArea,
+            furnishing_type,
+            apartmentNumber,
+            title_deed,
+            saleOrRent
+        ];
+
+        const totalFields = filledFields.length;
+        const filledCount = filledFields.filter(field => field).length;
+
+        // Calculate the percentage of completion
+        setProgress(Math.floor((filledCount / totalFields) * 100));
+    }, [
+        propertyName,
+        propertyType,
+        propertySubtype,
+        price,
+        location,
+        description,
+        bedroom,
+        bathroom,
+        size,
+        area,
+        parking,
+        buildArea,
+        plotUpArea,
+        furnishing_type,
+        apartmentNumber,
+        title_deed,
+        saleOrRent
+    ]);
 
     const validateForm = () => {
         const newErrors = {};
@@ -230,6 +278,17 @@ const AddProperty = () => {
             <section className={styles.dashboard_main_box}>
                 <h2>Add Property</h2>
                 <form className={styles.formMainBox} onSubmit={handleSubmit}>
+
+                    <div className={styles.progressCircleContainer}>
+                        <div className={styles.circularBackground}>
+                            <span className={styles.progressText}>{Math.round(progress)}% <br /> <span className={styles.smallProgressText}>Property Quality</span></span>
+                        </div>
+                        <div
+                            className={styles.progressCircle}
+                            style={{ '--progress': `${progress * 3.6}deg` }}
+                        ></div>
+                    </div>
+
                     {!propertyType && <div className={styles.propertyTypeBox}>
                         <h3>Select Property Type</h3>
                         <input type="radio" value="Residential" id="Residential" name='property_type' onChange={handlePropertyTypeChange} />
