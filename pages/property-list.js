@@ -136,7 +136,7 @@ const PropertyList = () => {
                                         <td>{property.status}</td>
                                         <td>
                                             <i className="bx bx-edit" onClick={() => handleEditClick(property.id)}></i>
-                                            <i className="bx bx-trash" onClick={() => handleDeleteClick(property.id)}></i>
+                                            {/* <i className="bx bx-trash" onClick={() => handleDeleteClick(property.id)}></i> */}
                                         </td>
                                     </tr>
                                 );

@@ -136,7 +136,7 @@ const AgentWalletCoin = () => {
             <section className={styles.dashboard_main_box}>
                 <h2>Wallet Coins</h2>
                 <div className={styles.coins_big_box}>
-                    <Image width={50} height={50} src="/images/coin-img.png" alt='' />
+                    <Image width={40} height={40} src="/images/coin-img.png" alt='' />
                     {wallets.length > 0 && (
                         <h3>{wallets[0].total_coins}</h3>
                     )}

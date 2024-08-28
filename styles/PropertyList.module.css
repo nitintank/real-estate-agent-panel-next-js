@@ -141,7 +141,7 @@
     }
   
     .dashboard_main_box h2 {
-      font-size: 25px;
+      font-size: 20px;
       text-align: center;
     }
   
@@ -171,5 +171,9 @@
     .customers th {
       padding: 5px;
       font-size: 14px;
+    }
+
+    .customers .document_link{
+      font-size: 12px;
     }
   }

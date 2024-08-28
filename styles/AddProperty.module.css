@@ -15,26 +15,26 @@
     margin-bottom: 10px;
 }
 
-.formMainBox{
+.formMainBox {
     width: 100%;
     margin: 10px auto;
     margin-bottom: 20px;
     padding-bottom: 20px;
 }
 
-.formMainBox label{
+.formMainBox label {
     font-size: 14px;
     text-transform: capitalize;
 }
 
-.formMainBox input[type=file]{
+.formMainBox input[type=file] {
     width: 100%;
     display: block;
     padding: 5px 10px;
     border-radius: 25px;
 }
 
-.checkBoxBigBox{
+.checkBoxBigBox {
     width: 100%;
     display: flex;
     align-items: center;
@@ -42,44 +42,46 @@
     gap: 12px;
 }
 
-.checkBoxDiv{
+.checkBoxDiv {
     width: 31%;
     display: flex;
     align-items: center;
     gap: 10px;
-} 
+}
 
-.amenitiesText{
+.amenitiesText {
     font-size: 25px;
     font-weight: 600;
     text-align: center;
     margin: auto;
 }
 
-.amenitiesNamesText{
+.amenitiesNamesText {
     font-size: 18px;
     font-weight: 600;
 }
 
-.dBlock{
+.dBlock {
     display: block;
 }
 
-.dBlock input[type=text]{
+.dBlock input[type=text] {
     width: 80% !important;
     border-radius: 10px !important;
 }
 
-.dBlock select{
+.dBlock select {
     width: 80%;
     border-radius: 10px;
     padding: 5px 10px;
 }
+
 .errorText {
     color: red;
     font-size: 0.875rem;
     margin-top: 0.25rem;
-  }
+}
+
 /* Responsive Code */
 
 @media (max-width: 1395px) {
@@ -107,7 +109,8 @@
     }
 }
 
-@media (max-width: 1100px){
+@media (max-width: 1100px) {
+
     /* Main Content Big Box */
     .mainSidebarBox {
         width: 25%;
@@ -131,26 +134,30 @@
         padding: 5px 10px;
     }
 
-    .mainContentBox h2{
+    .mainContentBox h2 {
         font-size: 30px;
         text-align: center;
     }
-    .checkBoxBigBox{
+
+    .checkBoxBigBox {
         gap: 10px;
     }
-    .checkBoxDiv{
+
+    .checkBoxDiv {
         width: 48%;
     }
-    .checkBoxDiv label{
+
+    .checkBoxDiv label {
         font-size: 14px;
     }
-    .dBlock input[type=text]{
+
+    .dBlock input[type=text] {
         width: 100% !important;
     }
 
 }
 
-.propertyTypeBox{
+.propertyTypeBox {
     width: 40%;
     margin: auto;
     display: flex;
@@ -164,23 +171,23 @@
     flex-wrap: wrap;
 }
 
-.propertyTypeBox img{
+.propertyTypeBox img {
     width: auto;
     height: 50px;
 }
 
-.propertyTypeBox h3{
+.propertyTypeBox h3 {
     font-size: 20px;
     font-weight: 600;
     width: 100%;
     text-align: center;
 }
 
-.propertyTypeBox input[type = radio]{
+.propertyTypeBox input[type=radio] {
     display: none;
 }
 
-.propertyTypeBox label{
+.propertyTypeBox label {
     width: 48%;
     cursor: pointer;
     border: 1px solid rgb(236, 236, 236);
@@ -196,7 +203,7 @@
     font-weight: 600;
 }
 
-.propertyTypeBox2{
+.propertyTypeBox2 {
     width: 40%;
     margin: auto;
     display: flex;
@@ -206,16 +213,16 @@
     gap: 10px;
 }
 
-.propertyTypeBox2 h3{
+.propertyTypeBox2 h3 {
     font-size: 22px;
     font-weight: 600;
 }
 
-.propertyTypeBox2 input[type = radio]{
+.propertyTypeBox2 input[type=radio] {
     display: none;
 }
 
-.propertyTypeBox2 label{
+.propertyTypeBox2 label {
     width: 100%;
     cursor: pointer;
     background-color: white;
@@ -227,7 +234,7 @@
 
 /* Property Form Box */
 
-.propertyFormBox{
+.propertyFormBox {
     width: 100%;
     margin: auto;
     display: flex;
@@ -240,11 +247,11 @@
     margin-bottom: 10px;
 }
 
-.propertyFormBox h3{
+.propertyFormBox h3 {
     font-size: 16px;
 }
 
-.propertyFormBox input{
+.propertyFormBox input {
     width: 100%;
     border: 1px solid #ebebeb;
     padding: 7px 10px;
@@ -253,7 +260,7 @@
     border-radius: 10px;
 }
 
-.propertyFormBox textarea{
+.propertyFormBox textarea {
     width: 100%;
     border: 1px solid #ebebeb;
     padding: 7px 10px;
@@ -262,7 +269,7 @@
     border-radius: 10px;
 }
 
-.propertyFormBox select{
+.propertyFormBox select {
     width: 100%;
     border: 1px solid #ebebeb;
     padding: 7px 10px;
@@ -271,7 +278,7 @@
     border-radius: 10px;
 }
 
-.propertyFormBox2{
+.propertyFormBox2 {
     width: 100%;
     margin: auto;
     display: flex;
@@ -284,12 +291,12 @@
     margin-bottom: 10px;
 }
 
-.propertyFormBox2 h3{
+.propertyFormBox2 h3 {
     width: 100%;
     font-size: 16px;
 }
 
-.propertyFormBox2 input{
+.propertyFormBox2 input {
     width: 49%;
     border: 1px solid #ebebeb;
     padding: 7px 10px;
@@ -298,12 +305,12 @@
     border-radius: 10px;
 }
 
-.propertyFormBox2 input[type=checkbox]{
+.propertyFormBox2 input[type=checkbox] {
     width: auto;
     display: flex;
 }
 
-.propertyFormBox2 select{
+.propertyFormBox2 select {
     width: 49%;
     border: 1px solid #ebebeb;
     padding: 7px 10px;
@@ -312,7 +319,7 @@
     border-radius: 10px;
 }
 
-.propertyFormBox3{
+.propertyFormBox3 {
     width: 100%;
     margin: auto;
     display: flex;
@@ -326,7 +333,7 @@
     margin-bottom: 10px;
 }
 
-.propertyFormBox3 input{
+.propertyFormBox3 input {
     width: 100%;
     border: 1px solid #ebebeb;
     padding: 7px 10px;
@@ -335,7 +342,7 @@
     border-radius: 10px;
 }
 
-.submitBtn{
+.submitBtn {
     width: 250px;
     padding: 6px 0px;
     text-align: center;
@@ -353,50 +360,96 @@
     gap: 10px;
 }
 
-.submitBtn i{
+.submitBtn i {
     font-size: 20px;
 }
 
 /* Responsive Code */
 
-@media (max-width: 1255px){
-    .propertyFormBox2{
+@media (max-width: 1255px) {
+    .propertyFormBox2 {
         gap: 10px;
     }
-    .mainContentBox form{
+
+    .mainContentBox form {
         width: 90%;
     }
 }
 
-@media (max-width: 1255px){
-    .propertyFormBox2{
+@media (max-width: 1255px) {
+    .propertyFormBox2 {
         gap: 5px;
     }
 }
 
 @media (max-width: 769px) {
-    .mainContentBox form{
+    .mainContentBox form {
         width: 100%;
     }
-    .propertyTypeBox{
+
+    .propertyTypeBox {
         width: 100%;
     }
-    .propertyTypeBox2{
+
+    .propertyTypeBox2 {
         width: 100%;
     }
-    .propertyFormBox2 input{
+    .propertyTypeBox2 h3{
+        font-size: 20px;
+    }
+    .propertyFormBox2 input {
         width: 100%;
     }
-    .propertyFormBox2 select{
+    .propertyFormBox2 h3{
+        font-size: 14px;
+    }
+    .propertyTypeBox2 label {
+        padding: 5px 10px;
+    }
+    .propertyFormBox input{
+        padding: 5px 8px;
+        border-radius: 5px;
+    }
+    .propertyFormBox textarea{
+        padding: 5px 8px;
+        border-radius: 5px;
+    }
+    .propertyFormBox select{
+        padding: 5px 8px;
+        border-radius: 5px;
+    }
+    .propertyFormBox h3{
+        font-size: 14px;
+    }
+    .formMainBox input[type=file] {
+        padding: 5px 8px;
+        border-radius: 5px;
+    }
+    .propertyFormBox2 select {
+        width: 100%;
+        padding: 5px 8px;
+        border-radius: 5px;
+    }
+    .propertyFormBox2 input {
+        width: 100%;
+        padding: 5px 8px;
+        border-radius: 5px;
+    }
+    .propertyFormBox3 input {
+        width: 100%;
+        padding: 5px 8px;
+        border-radius: 5px;
+    }
+
+    .checkBoxDiv {
         width: 100%;
     }
-    .checkBoxDiv{
-        width: 100%;
-    }
-    .amenitiesText{
+
+    .amenitiesText {
         font-size: 21px;
     }
-    .submitBtn{
+
+    .submitBtn {
         width: 220px;
         font-size: 16px;
     }
@@ -415,13 +468,15 @@
 
     .dashboard_main_box h2 {
         font-size: 25px;
+        font-weight: 600;
         text-align: center;
     }
 }
 
-.previewImage{
+.previewImage {
     width: 250px;
     height: auto;
+    border-radius: 5px;
 }
 
 /* Progress Circle Container */
@@ -480,7 +535,7 @@
     justify-content: center;
 }
 
-.smallProgressText{
+.smallProgressText {
     font-size: 0.9rem;
     font-weight: 500;
 }
@@ -492,10 +547,18 @@
         bottom: 10px;
         right: 10px;
     }
-    .progressText{
+
+    .progressText {
         font-size: 1.25rem;
     }
-    .smallProgressText{
+
+    .smallProgressText {
         font-size: 0.7rem;
+    }
+
+    .previewImage {
+        width: 150px;
+        height: auto;
+        border-radius: 5px;
     }
 }

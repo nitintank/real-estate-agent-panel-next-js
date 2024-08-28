@@ -148,7 +148,7 @@
     }
   
     .dashboard_main_box h2 {
-      font-size: 30px;
+      font-size: 25px;
       text-align: center;
     }
 
@@ -157,11 +157,17 @@
     }
 
     .profile_img_box img{
-        width: 145px;
-        height: 145px;
+        width: 125px;
+        height: 125px;
     }
 
     .userProfileBox input{
         width: 100%;
+        padding: 5px 7px;
+        border-radius: 5px;
+    }
+    .formInnerBox1 textarea{
+        padding: 5px 7px;
+        border-radius: 5px;
     }
   }

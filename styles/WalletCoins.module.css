@@ -36,7 +36,7 @@
 }
 
 .coins_big_box h3 {
-    font-size: 20px;
+    font-size: 30px;
     line-height: 1;
 }
 
@@ -126,10 +126,10 @@
     color: white;
 }
 
-.link_tag{
+.link_tag {
     text-decoration: none;
     color: black;
-  }
+}
 
 .property_image_css {
     width: 100px;
@@ -147,7 +147,7 @@
 
 /* Form Box CSS */
 
-.propertyTypeBox{
+.propertyTypeBox {
     width: 100%;
     margin: auto;
     display: flex;
@@ -162,13 +162,13 @@
     flex-wrap: wrap;
 }
 
-.propertyTypeBox label{
+.propertyTypeBox label {
     width: 100%;
     font-size: 14px;
     font-weight: 600;
 }
 
-.propertyTypeBox input{
+.propertyTypeBox input {
     width: 100%;
     border: 1px solid #ebebeb;
     padding: 7px 10px;
@@ -177,7 +177,7 @@
     border-radius: 10px;
 }
 
-.propertyTypeBox select{
+.propertyTypeBox select {
     width: 100%;
     border: 1px solid #ebebeb;
     padding: 7px 10px;
@@ -186,7 +186,7 @@
     border-radius: 10px;
 }
 
-.submitBtn{
+.submitBtn {
     width: 250px;
     padding: 6px 0px;
     text-align: center;
@@ -208,9 +208,9 @@
 
 .radioInput input {
     display: none;
-  }
-  
-  .radioInput {
+}
+
+.radioInput {
     --container_width: 350px;
     position: relative;
     display: flex;
@@ -222,9 +222,9 @@
     overflow: hidden;
     border: 1px solid rgba(53, 52, 52, 0.226);
     margin: 20px auto 5px auto;
-  }
-  
-  .radioInput label {
+}
+
+.radioInput label {
     width: 100%;
     padding: 10px;
     cursor: pointer;
@@ -234,9 +234,9 @@
     z-index: 1;
     font-weight: 600;
     font-size: 14px;
-  }
-  
-  .selection {
+}
+
+.selection {
     display: none;
     position: absolute;
     height: 100%;
@@ -246,24 +246,24 @@
     top: 0;
     transition: .15s ease;
     border-radius: 20px;
-  }
-  
-  .radioInput label:has(input:checked) {
+}
+
+.radioInput label:has(input:checked) {
     color: #fff;
-  }
-  
-  .radioInput label:has(input:checked)~.selection {
+}
+
+.radioInput label:has(input:checked)~.selection {
     background-color: #4070f4;
     display: inline-block;
-  }
-  
-  .radioInput label:nth-child(1):has(input:checked)~.selection {
+}
+
+.radioInput label:nth-child(1):has(input:checked)~.selection {
     transform: translateX(calc(var(--container_width) * 0/2));
-  }
-  
-  .radioInput label:nth-child(2):has(input:checked)~.selection {
+}
+
+.radioInput label:nth-child(2):has(input:checked)~.selection {
     transform: translateX(calc(var(--container_width) * 1/2));
-  }
+}
 
 /* Responsive Code */
 
@@ -277,8 +277,13 @@
     }
 
     .dashboard_main_box h2 {
-        font-size: 25px;
+        font-size: 20px;
         text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .coins_big_box h3 {
+        font-size: 25px;
     }
 
     .property_filter_big_box {
@@ -301,6 +306,15 @@
         width: 100%;
     }
 
+    .propertyTypeBox select {
+        padding: 5px 7px;
+        border-radius: 5px;
+    }
+    .propertyTypeBox input {
+        padding: 5px 7px;
+        border-radius: 5px;
+    }
+
     /* Table CSS Code */
     .customers th {
         white-space: nowrap;
@@ -311,5 +325,10 @@
     .customers th {
         padding: 5px;
         font-size: 14px;
+    }
+
+    .h3text{
+        font-size: 18px;
+        text-align: center;
     }
 }

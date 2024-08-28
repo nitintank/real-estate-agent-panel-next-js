@@ -181,7 +181,7 @@ const RedeemCoins = () => {
             <section className={styles.dashboard_main_box}>
                 <h2>Total Wallet Coins</h2>
                 <div className={styles.coins_big_box}>
-                    <Image width={50} height={50} src="/images/coin-img.png" alt='' />
+                    <Image width={40} height={40} src="/images/coin-img.png" alt='' />
                     {wallets.length > 0 && (
                         <h3>{wallets[0].total_coins}</h3>
                     )}
@@ -214,7 +214,7 @@ const RedeemCoins = () => {
 
                 {selectedSection === 'redeemCoins' && (
                     <>
-                        <h3>Redeem Coins</h3>
+                        <h3 className={styles.h3text}>Redeem Coins</h3>
                         <form onSubmit={handleRequestSubmit} className={styles.propertyTypeBox}>
                             <label>Select Property</label>
 
@@ -236,7 +236,7 @@ const RedeemCoins = () => {
 
                 {selectedSection === 'transactionHistory' && (
                     <>
-                        <h3>Transaction History</h3>
+                        <h3 className={styles.h3text}>Transaction History</h3>
                         <div className={styles.table_big_box}>
                             <table className={styles.customers}>
                                 <thead>
